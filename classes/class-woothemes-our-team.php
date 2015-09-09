@@ -583,7 +583,7 @@ class Woothemes_Our_Team {
 		}
 
 		// Whitelist checks.
-		if ( ! in_array( $query_args['orderby'], array( 'none', 'ID', 'author', 'title', 'date', 'modified', 'parent', 'rand', 'comment_count', 'menu_order', 'meta_value', 'meta_value_num' ) ) ) {
+		if ( ! in_array( $query_args['orderby'], array( 'none', 'ID', 'author', 'title', 'name', 'date', 'modified', 'parent', 'rand', 'comment_count', 'menu_order', 'meta_value', 'meta_value_num' ) ) ) {
 			$query_args['orderby'] = 'date';
 		}
 
@@ -767,10 +767,10 @@ class Woothemes_Our_Team {
 					    }
 					});
 
-					// Unser #user_id if #user_search is empty on page load
-					if ( jQuery( '#user_search' ).val().length == 0 ) {
-				        jQuery( "#user_id" ).val( 0 );
-				    }
+					// Unset #user_id if #user_search is empty on page load
+					if ( jQuery( '#user_search' ).val() && jQuery( '#user_search' ).val().length == 0 ) {
+						jQuery( "#user_id" ).val( 0 );
+					}
 				});
 			</script>
 	<?php

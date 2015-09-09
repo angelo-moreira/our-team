@@ -58,7 +58,6 @@ function woothemes_our_team ( $args = '' ) {
 		'after_title' 				=> '</h2>',
 		'category' 					=> 0
 	) );
-
 	$args = wp_parse_args( $args, $defaults );
 
 	// Allow child themes/plugins to filter here.
@@ -173,6 +172,9 @@ function woothemes_our_team ( $args = '' ) {
 
 					if ( true == $args['contact_email'] && '' != $post->contact_email && apply_filters( 'woothemes_our_team_member_contact_email', true ) ) {
 						$member_fields .= '<li class="our-team-contact-email" itemprop="email"><a href="mailto:' . esc_html( $post->contact_email ) . '">' . __( 'Email ', 'our-team-by-woothemes' ) . get_the_title() . '</a></li>';
+						$template = str_replace( '%%CONTACT_EMAIL%%', '<a href="mailto:'.esc_html( $post->contact_email ).'">'.esc_html( $post->contact_email ).'</a>', $template );
+					} else {
+						$template = str_replace( '%%CONTACT_EMAIL%%', '', $template );
 					}
 
 					if ( true == $args['tel'] && '' != $post->tel && apply_filters( 'woothemes_our_team_member_tel', true ) ) {
@@ -263,7 +265,6 @@ if ( ! function_exists( 'woothemes_our_team_shortcode' ) ) {
  */
 function woothemes_our_team_shortcode ( $atts, $content = null ) {
 	$args = (array)$atts;
-
 	$defaults = array(
 		'limit' 					=> 12,
 		'per_row' 					=> null,
