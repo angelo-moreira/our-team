@@ -200,8 +200,9 @@ function woothemes_our_team ( $args = '' ) {
 				$template = str_replace( '%%ID%%', get_the_ID(), $template );
 				$template = str_replace( '%%CLASS%%', esc_attr( $css_class ), $template );
 
+				$largeImg = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
 				if ( isset( $post->image ) && ( '' != $post->image ) && true == $args['display_avatar'] ) {
-					$template = str_replace( '%%AVATAR%%', '<figure itemprop="image">' . $post->image . '</figure>', $template );
+					$template = str_replace( '%%AVATAR%%', '<figure itemprop="image"><img src="' . $largeImg[0] . '"></figure>', $template );
 				} else {
 					$template = str_replace( '%%AVATAR%%', '', $template );
 				}
