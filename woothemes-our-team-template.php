@@ -140,6 +140,7 @@ function woothemes_our_team ( $args = '' ) {
 
 				// Templating engine replacement.
 				$template 		= str_replace( '%%TITLE%%', $title, $template );
+				$template 		= str_replace( '%%PROFILE_URL%%', $post->url, $template );
 
 				$author 		= '';
 				$author_text 	= '';
@@ -202,7 +203,7 @@ function woothemes_our_team ( $args = '' ) {
 
 				$largeImg = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
 				if ( isset( $post->image ) && ( '' != $post->image ) && true == $args['display_avatar'] ) {
-					$template = str_replace( '%%AVATAR%%', '<figure itemprop="image"><img src="' . $largeImg[0] . '"></figure>', $template );
+					$template = str_replace( '%%AVATAR%%', '<figure itemprop="image"><a href="'.$post->url.'"><img src="' . $largeImg[0] . '"></a></figure>', $template );
 				} else {
 					$template = str_replace( '%%AVATAR%%', '', $template );
 				}
